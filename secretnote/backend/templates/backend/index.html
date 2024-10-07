@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8" />
+    <title>Notes</title>
+  </head>
+  <body>
+    {% if notes %}
+      <ul>
+        {% for note in notes %}
+          <li>
+            <a href="{% url 'notes:url' note.url %}">{{ note.content }}</a>
+          </li>
+        {% endfor %}
+      </ul>
+    {% else %}
+      <p>No Notes</p>
+    {% endif %}
+  </body>
+</html>
