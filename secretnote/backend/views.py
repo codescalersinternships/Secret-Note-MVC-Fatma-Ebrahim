@@ -11,11 +11,13 @@ from django.db.models import F,Q
 from django.views.decorators.cache import never_cache
 from django_ratelimit.decorators import ratelimit
 from datetime import datetime
+from django.utils import timezone
 
 from .models import Note
 import uuid 
 
 
+@ratelimit(key='ip', rate='10/m')
 def signup(request):
     if request.method=="POST":
         username = request.POST.get("username")
@@ -30,6 +32,7 @@ def signup(request):
             print("all fields are required")
     return render(request,"backend/signup.html")
 
+@ratelimit(key='ip', rate='10/m')
 def signin(request):
     if request.method == "POST":
         username = request.POST.get("username")
@@ -57,7 +60,8 @@ def content(request, note_url):
     
     note.views_limit = F("views_limit") - 1
     note.save()
-    return HttpResponse(f"You're looking at Note {note.id} with content {note.content}")
+    return render(request, "backend/note.html", {"note": note})
+    return HttpResponse(f"<p>You're looking at Note {note.id} with content: {note.content}</p>")
 
 
 @login_required
@@ -79,12 +83,21 @@ def allnotes(request):
 def addnote(request):
     print(request.user)
     if request.method == "POST":
+        
         content=request.POST.get('content')
         expiration=request.POST.get('expiration')  
-        views_limit=request.POST.get('views_limit')
+        expiration = datetime.strptime(expiration, '%Y-%m-%dT%H:%M')
+        expiration = timezone.make_aware(expiration, timezone.get_current_timezone())
+        views_limit = int(request.POST.get('views_limit'))
+        
+        if content=="": content="No content"
+        if views_limit<=0: views_limit=10
+        if expiration<=timezone.now(): expiration=timezone.now()+timezone.timedelta(days=1)
+        
         n=Note(content=content,expiration=expiration,views_limit=views_limit,url=uuid.uuid4())
         n.save()
-        print(n.created_at) #2024-10-09 12:53:10.248280+00:00  datetime
-        print(n.expiration) #2024-10-10T01:01 string
+        
+        # print(n.created_at) #2024-10-09 12:53:10.248280+00:00  datetime
+        # print(n.expiration) #2024-10-10T01:01 string
         return HttpResponseRedirect(reverse("notes:all"))
     return render(request,"backend/addnote.html")

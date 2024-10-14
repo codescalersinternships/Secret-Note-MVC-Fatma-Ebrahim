@@ -1,23 +1,16 @@
-<!DOCTYPE html>
-<html lang="en-US">
-  <head>
-    <meta charset="utf-8" />
-    <title>Signup</title>
-  </head>
-  <body>
-    <form action="{% url 'notes:signup' %}" method="POST">
-      {% csrf_token %}
-      <label for="username">Username</label>
-      <input name="username" type="text" placeholder="username" />
+{% extends 'base.html' %}
+{% block content %}
+  <form action="{% url 'notes:signup' %}" method="POST">
+    {% csrf_token %}
+    <label for="username">Username</label>
+    <input name="username" type="text" placeholder="username" />
 
-      <label for="email">Email</label>
-      <input name="email" type="text" placeholder="email@example.com" />
+    <label for="email">Email</label>
+    <input name="email" type="text" placeholder="email@example.com" />
 
-      <label for="password">Password</label>
-      <input name="password" type="password" placeholder="password" />
+    <label for="password">Password</label>
+    <input name="password" type="password" placeholder="password" />
 
-      <input type="submit" value="Signup" />
-    </form>
-  
-  </body>
-</html>
+    <input type="submit" value="Signup" />
+  </form>
+{% endblock %}
