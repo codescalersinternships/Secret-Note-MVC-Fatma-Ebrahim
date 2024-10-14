@@ -1,13 +1,19 @@
 {% extends 'base.html' %}
 {% block content %}
+<div class="signin">
   <form action="{% url 'notes:signin' %}" method="POST">
     {% csrf_token %}
-    <label for="username">Username</label>
-    <input name="username" type="text" placeholder="username" />
+    <div class="form-group">
+      <label for="username">Username</label>
+      <input name="username" type="text" placeholder="username" />
+    </div>
 
-    <label for="password">Password</label>
-    <input name="password" type="password" placeholder="password" />
+    <div class="form-group">
+      <label for="password">Password</label>
+      <input name="password" type="password" placeholder="password" />
+    </div>
 
     <input type="submit" value="Login" />
   </form>
+</div>
 {% endblock %}

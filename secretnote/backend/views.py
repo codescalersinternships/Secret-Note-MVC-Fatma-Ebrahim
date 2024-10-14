@@ -61,7 +61,7 @@ def content(request, note_url):
     note.views_limit = F("views_limit") - 1
     note.save()
     return render(request, "backend/note.html", {"note": note})
-    return HttpResponse(f"<p>You're looking at Note {note.id} with content: {note.content}</p>")
+
 
 
 @login_required
