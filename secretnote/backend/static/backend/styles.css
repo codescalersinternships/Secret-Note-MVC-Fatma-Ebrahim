@@ -6,7 +6,8 @@ body {
 
 .container {
     padding: 10px;
-    max-width: 800px;
+    padding-left: 25px;
+    max-width: 400px;
     margin: auto;
     margin-top: 50px;
     background-color: white;
@@ -14,6 +15,8 @@ body {
     border-radius: 20px;
 
 }
+
+
 
 ul {
     display: flex;
@@ -31,7 +34,7 @@ a {
     width: 60px;
     background-color: #f1f3f5;
     margin-bottom: 15px;
-    margin-left: 15px;
+    /* margin-left: 15px; */
     border-radius: 50%;
     display: flex;
     align-items: center;
@@ -55,6 +58,7 @@ h1 {
     text-align: center;
     color: #2c3e50;
     margin-bottom: 30px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 
 p {
@@ -91,54 +95,184 @@ body {
 }
 
 .form-group {
-    text-align: left; 
-    width: 100%;     
+    text-align: left;
+    width: 100%;
 }
 
 label {
-    font-size: 16px;  
-    color: #2c3e50;  
-    display: block;  
+    font-size: 16px;
+    color: #2c3e50;
+    display: block;
     margin-bottom: 5px;
     margin-top: 10px;
 }
 
 input[type="text"],
 input[type="password"] {
-    width: 90%;  
-    padding: 10px;  
-    margin-bottom: 20px; 
-    border: 1px solid #ccc;  
-    border-radius: 10px;  
-    font-size: 16px;  
-    color: #2c3e50; 
+    width: 90%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    font-size: 16px;
+    color: #2c3e50;
     margin: auto;
 }
 
 input[type="submit"] {
     background-color: rgb(149, 129, 199);
     color: white;
-    border: none; 
+    border: none;
     border-radius: 10px;
-    padding: 10px;  
+    padding: 10px;
     font-size: 16px;
     cursor: pointer;
-    transition: background-color 0.3s ease;  
-    width: 40%;  
-    margin-top: 20px; 
+    transition: background-color 0.3s ease;
+    width: 40%;
+    margin-top: 20px;
 }
 
 input[type="submit"]:hover {
-    background-color: rgba(149, 129, 199, 0.8); 
+    background-color: rgba(149, 129, 199, 0.8);
 }
 
 form {
     display: flex;
-    flex-direction: column; 
-    align-items: center; 
-    text-align: left;  
+    flex-direction: column;
+    align-items: center;
+    text-align: left;
+}
+
+.addnote {
+    padding: 10px;
+    padding-left: 25px;
+    max-width: 700px;
+    margin: auto;
+    margin-top: 50px;
+    background-color: white;
+    box-shadow: 0 4px 8px rgba(149, 129, 199, 0.5);
+    border-radius: 20px;
+
+}
+
+input[type="text"],
+input[type="password"],
+input[type="datetime-local"],
+input[type="number"],
+textarea {
+    width: calc(100% - 20px);
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    font-size: 16px;
+    color: #2c3e50;
+    box-sizing: border-box;
+}
+
+input[type="submit"] {
+    background-color: rgb(149, 129, 199);
+    color: white;
+    border: none;
+    border-radius: 10px;
+    padding: 10px;
+    font-size: 16px;
+    font-weight: bold;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    width: 40%;
+    margin-top: 20px;
+}
+
+input[type="submit"]:hover {
+    background-color: rgba(149, 129, 199, 0.8);
 }
 
 
+.homepage {
+    width: 100%;
+    margin: auto;
+}
 
+.home-group {
+    padding: 50px;
+    max-width: 900px;
+    margin: auto;
+    margin-top: 150px;
+    background-color: white;
+    box-shadow: 0 4px 12px rgba(149, 129, 199, 0.5);
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
 
+.btn-group {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 35%;
+    margin: 10px;
+}
+
+.btn-group h6 {
+    height: 40px;
+    width: 100%;
+    text-align: center;
+
+}
+
+.row {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    width: 100%;
+}
+
+.btn {
+    background-color: rgb(149, 129, 199);
+    color: white;
+    border: none;
+    border-radius: 10px;
+    padding: 0 25px;
+    font-size: 15px;
+    font-weight: bold;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    width: max-content;
+    height: 40px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.btn:hover {
+    background-color: rgba(149, 129, 199, 0.8);
+    transform: scale(1.05);
+}
+
+@media (max-width: 770px) {
+    .btn-group {
+        width: 80%;
+    }
+
+    .row {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .btn {
+        width: 100%;
+        margin: 5px 0;
+    }
+}
+
+@media (max-width: 480px) {
+    .btn {
+        font-size: 14px;
+        padding: 0 20px;
+        height: 35px;
+    }
+}

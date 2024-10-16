@@ -5,11 +5,14 @@
     {% if notes %}
       <ul>
         {% for note in notes %}
-          <a href="{% url 'notes:url' note.url %}">{{ note.views_limit }}</a>
+          <a  id="note" href="{% url 'notes:url' note.url %}">{{ note.views_limit }}</a>
         {% endfor %}
       </ul>
     {% else %}
       <p>No Notes</p>
     {% endif %}
+    <div class="row">
+      <a class="btn" id="addnote" href="{% url 'notes:add' %}">Add a Note</a>
+    </div>
   </div>
 {% endblock %}

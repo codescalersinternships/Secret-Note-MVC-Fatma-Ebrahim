@@ -1,10 +1,13 @@
 {% extends 'base.html' %}
 {% block content %}
-  <div class="container">
+  <div class="container" id="{{note.id}}">
     {% if note %}
-      <p>{{ note.content }}</p>
-      <h6>expiration date: {{ note.expiration }}</h6>
-      <h6>views limit: {{ note.views_limit }}</h6>
+      <p id="content">{{ note.content }}</p>
+      <h6 id="expiration">expiration date: {{ note.expiration }}</h6>
+      <h6 id="viewslimit">views limit: {{ note.views_limit }}</h6>
     {% endif %}
+    <div class="row">
+      <a class="btn" id="addnote" href="{% url 'notes:add' %}">Add another Note</a>
+    </div>
   </div>
 {% endblock %}

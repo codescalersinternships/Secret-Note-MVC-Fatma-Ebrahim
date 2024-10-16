@@ -4,7 +4,7 @@ from . import views
 
 app_name = "notes"
 urlpatterns=[
-    path('',views.index),
+    path('',views.homepage,name="homepage"),
    
     path('add/', views.addnote,name="add"),
     path('all/',views.allnotes, name="all"),

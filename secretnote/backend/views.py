@@ -17,7 +17,7 @@ from .models import Note
 import uuid 
 
 
-@ratelimit(key='ip', rate='10/m')
+@ratelimit(key='ip', rate='100/m')
 def signup(request):
     if request.method=="POST":
         username = request.POST.get("username")
@@ -32,40 +32,42 @@ def signup(request):
             print("all fields are required")
     return render(request,"backend/signup.html")
 
-@ratelimit(key='ip', rate='10/m')
+@ratelimit(key='ip', rate='100/m')
 def signin(request):
     if request.method == "POST":
         username = request.POST.get("username")
         password = request.POST.get("password")
-        user = authenticate(request, username=username, password=password)
-        if user is not None:
-            login(request, user)
-            return HttpResponseRedirect(reverse("notes:all"))
+        if username!=""  and password!="":
+            user = authenticate(request, username=username, password=password)
+            if user is not None:
+                login(request, user)
+                return HttpResponseRedirect(reverse("notes:all"))
+            else:
+                raise Http404("unAuthorized user")
         else:
-            raise Http404("unAuthorized user")
+            print("all fields are required")
     return render(request,"backend/signin.html")
 
 
-def index(request):
-    return HttpResponse("Hello, world. You're at the backend index")
+def homepage(request):
+    return render(request, "backend/homepage.html")
 
 
-@login_required
-@ratelimit(key='ip', rate='10/m')
+
+@ratelimit(key='ip', rate='100/m')
 def content(request, note_url):
     note = get_object_or_404(Note, url=note_url) 
     if note.views_limit<1:
         note.delete()
         return HttpResponseRedirect(reverse("notes:all"))
-    
-    note.views_limit = F("views_limit") - 1
+    note.views_limit = max(0, note.views_limit - 1)
     note.save()
     return render(request, "backend/note.html", {"note": note})
 
 
 
 @login_required
-@ratelimit(key='ip', rate='10/m')
+@ratelimit(key='ip', rate='100/m')
 @never_cache
 def allnotes(request):
     print(request.user)
@@ -79,7 +81,7 @@ def allnotes(request):
         
 
 @login_required
-@ratelimit(key='ip', rate='10/m')
+@ratelimit(key='ip', rate='100/m')
 def addnote(request):
     print(request.user)
     if request.method == "POST":
