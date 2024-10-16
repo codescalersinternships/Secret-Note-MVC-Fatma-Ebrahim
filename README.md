@@ -22,4 +22,4 @@ git clone https://github.com/codescalersinternships/Secret-Note-MVC-Fatma-Ebrahi
 Now you can securely add and share your notes with the secret note app!
 
 
-![Screenshot from 2024-10-17 02-18-22](https://github.com/user-attachments/assets/e4789706-aeea-46da-afe8-fb520c8fbc42)
+![secretnote](https://github.com/user-attachments/assets/f594cf0f-3294-48a9-9ee2-14fa30bc9444)
