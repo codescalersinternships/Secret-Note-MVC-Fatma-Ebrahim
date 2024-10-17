@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+  <div class="homepage">
+    <div class="home-group">
+      <img src="{% static 'backend/images/silence_colored.png' %}" width="180px" alt="logo" />
+      <h1>Welcome to Secret Notes</h1>
+      <div class="row">
+        <div class="btn-group">
+          <h6>Add Your Secret Note</h6>
+          <a class="btn" id="addnote" href="{% url 'notes:add' %}">Keep a Secret</a>
+        </div>
+
+        <div class="btn-group">
+          <h6>View All Your Notes</h6>
+          <a class="btn" id="allnotes" href="{% url 'notes:all' %}">View Secrets</a>
+        </div>
+
+        <div class="btn-group">
+          <h6>Already a Secret Keeper?</h6>
+          <a class="btn" id="signin" href="{% url 'notes:signin' %}">Sign In</a>
+        </div>
+
+        <div class="btn-group">
+          <h6>New to Secret Note App?</h6>
+          <a class="btn" id="signup" href="{% url 'notes:signup' %}">Sign Up</a>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}

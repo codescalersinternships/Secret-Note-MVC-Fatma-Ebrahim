@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% block content %}
+  <div class="container">
+    <form action="{% url 'notes:signup' %}" method="POST">
+      {% csrf_token %}
+      <div class="form-group">
+        <label for="username">Username</label>
+        <input name="username" type="text" placeholder="username" required/>
+      </div>
+
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input name="email" type="text" placeholder="email@example.com" required />
+      </div>
+
+      <div class="form-group">
+        <label for="password">Password</label>
+        <input name="password" type="password" placeholder="password" required />
+      </div>
+
+      <input type="submit" value="Signup" />
+    </form>
+  </div>
+{% endblock %}
