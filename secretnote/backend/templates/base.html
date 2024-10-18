@@ -1,0 +1,18 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>
+      {% block title %}
+
+      {% endblock %}
+    </title>
+    <link rel="icon" href="{% static 'backend/images/silence_colored.png' %}" type="image/x-icon" />
+    <link rel="stylesheet" href="{% static 'backend/styles.css' %}" />
+  </head>
+  <body>
+    {% block content %}
+
+    {% endblock %}
+  </body>
+</html>

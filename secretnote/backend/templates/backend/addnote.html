@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% block content %}
+  <div class="addnote">
+    <form action="{% url 'notes:add' %}" method="POST">
+      {% csrf_token %}
+
+      <div class="form-group">
+        <label for="content">Note Content</label>
+        <textarea name="content" rows="5" cols="40" required></textarea>
+      </div>
+
+      <div class="form-group">
+        <label for="expiration">Expiration Date</label>
+        <input name="expiration" type="datetime-local" value="{{ note.expiration|date:'Y-m-d\\TH:i:s' }}" required />
+      </div>
+
+      <div class="form-group">
+        <label for="views_limit">Views Limit</label>
+        <input name="views_limit" type="number" min="1" value="1" required />
+      </div>
+
+      <input type="submit" value="Add Note" />
+    </form>
+    <br />
+    <div class="row">
+      <a class="btn" id="allnotes" href="{% url 'notes:all' %}">View Notes</a>
+    </div>
+  </div>
+{% endblock %}
